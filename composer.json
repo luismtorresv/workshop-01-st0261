@@ -31,6 +31,13 @@
         }
     },
     "scripts": {
+        "setup": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --seed --ansi",
+            "@php artisan storage:link"
+        ],
         "post-autoload-dump": [
             "@php artisan config:clear",
             "@php artisan clear-compiled",
